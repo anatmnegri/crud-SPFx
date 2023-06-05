@@ -1,0 +1,103 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+
+.links {
+  a {
+    text-decoration: none;
+    color: "[theme:link, default:#03787c]";
+    color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
+
+    &:hover {
+      text-decoration: underline;
+      color: "[theme:linkHovered, default: #014446]";
+      color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
+    }
+  }
+}
+
+h1{
+  text-align: center;
+  color: #085F63;
+}
+  
+.divBtn{
+  display: flex; 
+  justify-content: center;
+}
+.btnForm{
+  //background: linear-gradient(-45deg, #085f63, #3f9397, #085f63);
+  background-color: #085f63;
+  border: none;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.btnForm:hover{
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.24), 0 2px 6px 0 rgba(0,0,0,0.19);
+}
+
+
+  table {
+  border-collapse: collapse;
+  margin: auto;
+  box-shadow: 0 1px 2px 1px rgba(0,0,0,.2), 0 1px 2px 0 rgba(0,0,0,.19);
+  border-radius: 10px;
+  }
+  
+  th, td{
+  padding: 10px;
+  text-align: center;
+  width: 120px;
+  border: none;
+  }
+  
+  th{
+  font-weight: bold;
+  }
+  
+  
+  tr:nth-child(even) {
+  background-color: #DCEBE6;
+  }
+  
+  tr:hover:nth-child(1n + 2) {
+  background-color: #085F63;
+  color: #fff;
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    
+    & > input {
+      flex: 1 1 10ch;
+      margin: .5rem;
+      
+      &[type="text"] {
+        flex: 3 1 30ch;
+      }
+    }
+  }
+  
+  input {
+    border: none;
+    background: hsl(0 0% 93%);
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+  }
+
+  .btnsCadastro{
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .cursorBtn{
+    cursor: pointer;
+  }

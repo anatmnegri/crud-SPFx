@@ -12,6 +12,7 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import styles from './HelloWorldWebPart.module.scss';
 import * as strings from 'HelloWorldWebPartStrings';
 import * as $ from "jquery";
+import * as moment from 'moment';
 
 import {
   SPHttpClient,
@@ -58,11 +59,7 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
     <h1>Realize seu cadastro:</h1>
       <form class="">
         <input id="title" type="text" placeholder="Título do livro" name="title"><br>
-        <input id="escritor" type="text" placeholder="Escritor(a) do livro" name="escritor"><br>
-        <input id="dataInicio" type="date" name="dataInicio"><br>
-        <input id="dataFim" type="date" name="dataFim"><br>
-        <input id="avaliacao" type="number" placeholder="Avaliação (Nota 0 a 5)" min="0" max="5" name="avaliacao">
-        <br>
+        <input id="escritor" type="text" placeholder="Escritor(a) do livro" name="escritor"><br><br>
         
       </form>
       <div class="${styles.btnsCadastro}">
@@ -208,15 +205,17 @@ this.updateButton();
   private _renderList(items: ISPList[]): void {
     let tableItens = ''
     items.forEach((item: ISPList) => {
+      const dataInicio = (moment(item.Inicio)).format('DD/MM/YYYY')
+      const dataFim = (moment(item.Fim)).format('DD/MM/YYYY')
       tableItens += `
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <tr class="menu-item">
         <td><span class="ms-font-l">${item.Id}</span></td>
         <td><span class="ms-font-l">${item.Title}</span></td>
         <td><span class="ms-font-l">${item.Escritor}</span></td>
-        <td><span class="ms-font-l">${item.Inicio}</span></td>
-        <td><span class="ms-font-l">${item.Fim}</span></td>
         <td><span class="ms-font-l">${item.Avaliacao}</span></td>
+        <td><span class="ms-font-l">${dataInicio}</span></td>
+        <td><span class="ms-font-l">${dataFim}</span></td>
         <td>
         <span class="${styles.cursorBtn} btnExcluir material-symbols-outlined" name="action">delete_forever</span>
         <span type="submit" class="${styles.cursorBtn} btnUpdate material-symbols-outlined" name="action">edit</span>
@@ -232,9 +231,9 @@ this.updateButton();
           <th>ID</th>
           <th>Livro</th>
           <th>Escritor(a)</th>
+          <th>Avaliação</th>
           <th>Início</th>
           <th>Fim</th>
-          <th>Avaliação</th>
           <th>Ações</th>
         </tr>
         ${tableItens}

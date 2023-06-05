@@ -58,9 +58,16 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
     <div hidden id="formulario">
     <h1>Realize seu cadastro:</h1>
       <form class="">
-        <input id="title" type="text" placeholder="Título do livro" name="title"><br>
-        <input id="escritor" type="text" placeholder="Escritor(a) do livro" name="escritor"><br><br>
-        
+        <label for:"title">Título:</label>
+        <input id="title" type="text" placeholder="Ex: Matéria Escura" name="title"><br>
+        <label for:"escritor">Escritor(a) do livro:</label>
+        <input id="escritor" type="text" placeholder="Ex: Blake Crouch" name="escritor"><br><br>
+        <label for:"dataInicio">Data de Início:</label>
+        <input id="dataInicio" type="date" name="dataInicio"><br>
+        <label for:"dataFim">Data de Fim:</label>
+        <input id="dataFim" type="date" name="dataFim"><br>
+        <label for:"avaliacao">Avaliação:</label>
+        <input id="avaliacao" type="number"  min="0" max="5" name="avaliacao">
       </form>
       <div class="${styles.btnsCadastro}">
         <button type="submit" class="${styles.btnForm}" id="btnCadastrar">Cadastrar</button>
@@ -189,8 +196,11 @@ this.updateButton();
   private _updateItem(Id: string): void {
     const title = $('input[name=title]').val();
     const escritor = $('input[name=escritor]').val();
+    const dataInicio = $('input[name=dataInicio]').val();
+    const dataFim = $('input[name=dataFim]').val();
+    const avaliacao = $('input[name=avaliacao]').val();
     const spOptions: ISPHttpClientOptions ={
-      "body":`{Title:'${title}', Escritor:'${escritor}'}`,
+      "body":`{Title:'${title}', Escritor:'${escritor}', Inicio:'${dataInicio}', Fim:'${dataFim}', Avaliacao:'${avaliacao}'}`,
       "headers": {"X-HTTP-Method": "MERGE", "IF-MATCH":"*"}
     }
     this.context.spHttpClient.post(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('CadastrodeLivros')/items(${Id})`, SPHttpClient.configurations.v1, spOptions)
@@ -213,9 +223,9 @@ this.updateButton();
         <td><span class="ms-font-l">${item.Id}</span></td>
         <td><span class="ms-font-l">${item.Title}</span></td>
         <td><span class="ms-font-l">${item.Escritor}</span></td>
-        <td><span class="ms-font-l">${item.Avaliacao}</span></td>
         <td><span class="ms-font-l">${dataInicio}</span></td>
         <td><span class="ms-font-l">${dataFim}</span></td>
+        <td><span class="ms-font-l">${item.Avaliacao}</span></td>
         <td>
         <span class="${styles.cursorBtn} btnExcluir material-symbols-outlined" name="action">delete_forever</span>
         <span type="submit" class="${styles.cursorBtn} btnUpdate material-symbols-outlined" name="action">edit</span>
@@ -226,15 +236,16 @@ this.updateButton();
     });
     
     const html: string = `
+    <h1>Livros cadastrados:</h1>
       <table>
         <tr>
           <th>ID</th>
           <th>Livro</th>
           <th>Escritor(a)</th>
-          <th>Avaliação</th>
           <th>Início</th>
           <th>Fim</th>
-          <th>Ações</th>
+          <th>Avaliação</th>
+          <th></th>
         </tr>
         ${tableItens}
       </table>`;

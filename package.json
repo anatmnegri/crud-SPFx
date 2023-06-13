@@ -19,6 +19,7 @@
     "@microsoft/sp-property-pane": "1.17.2",
     "@microsoft/sp-webpart-base": "1.17.2",
     "jquery": "^3.7.0",
+    "lit-html": "^2.7.4",
     "moment": "^2.29.4",
     "node-fetch": "^2.6.7",
     "tslib": "2.3.1"

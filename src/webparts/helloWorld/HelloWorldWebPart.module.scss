@@ -73,8 +73,7 @@ h1{
   }
   
   form {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-block;
     
     & > input {
       flex: 1 1 10ch;
@@ -91,6 +90,8 @@ h1{
     background: hsl(0 0% 93%);
     border-radius: .25rem;
     padding: .75rem 1rem;
+    margin: 0px 10px 5px 0px;
+    width: 100%;
   }
 
   .btnsCadastro{
@@ -100,4 +101,14 @@ h1{
 
   .cursorBtn{
     cursor: pointer;
+  }
+
+  .divInput{
+    display: flex;
+    flex-direction: column;
+  }
+
+  label{
+    display: block;
+    margin-left: 5px;
   }

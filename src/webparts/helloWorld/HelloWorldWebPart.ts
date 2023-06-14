@@ -184,7 +184,7 @@ private limparDados(): void{
  
  //recuperar listas do SharePoint dentro da classe HelloWorldWebPart
  private _getListData(): Promise<ISPLists> {
-   return this.context.spHttpClient.get(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('CadastrodeLivros')/items`, SPHttpClient.configurations.v1)
+   return this.context.spHttpClient.get(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('Cadastro de Livros')/items`, SPHttpClient.configurations.v1)
      .then((response: SPHttpClientResponse) => {
        return response.json();
       })
@@ -305,7 +305,7 @@ private limparDados(): void{
         "body": this.convertBodyValues()
       }
   
-      this.context.spHttpClient.post(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getByTitle('CadastrodeLivros')/items`, SPHttpClient.configurations.v1, spOptions)
+      this.context.spHttpClient.post(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getByTitle('Cadastro de Livros')/items`, SPHttpClient.configurations.v1, spOptions)
         .then((response: SPHttpClientResponse) => {
           this._renderListAsync();
           this.limparDados()
@@ -322,7 +322,7 @@ private limparDados(): void{
     const spOptions: ISPHttpClientOptions ={
       "headers": {"X-HTTP-Method": "DELETE", "IF-MATCH":"*"}
     }
-    this.context.spHttpClient.post(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('CadastrodeLivros')/items(${Id})`, SPHttpClient.configurations.v1, spOptions)
+    this.context.spHttpClient.post(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('Cadastro de Livros')/items(${Id})`, SPHttpClient.configurations.v1, spOptions)
       .then((response: SPHttpClientResponse) => {
         this._renderListAsync();
       })
@@ -337,7 +337,7 @@ private limparDados(): void{
       "headers": {"X-HTTP-Method": "MERGE", "IF-MATCH":"*"}
     }
 
-    this.context.spHttpClient.post(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('CadastrodeLivros')/items(${Id})`, SPHttpClient.configurations.v1, spOptions)
+    this.context.spHttpClient.post(`${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('Cadastro de Livros')/items(${Id})`, SPHttpClient.configurations.v1, spOptions)
       .then((response: SPHttpClientResponse) => {
         this._renderListAsync();
         this.limparDados();
